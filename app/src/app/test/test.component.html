@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-8">
+    <app-form-group #form></app-form-group>
+  </div>
+  <div class="col-4">
+    <app-info-panel
+      [currentTime]="form.timer.time"
+      [results]="form.formGroup.tests.value"
+      (startTesting)="start()"
+      (stopTesting)="stop()"
+    ></app-info-panel>
+  </div>
+</div>

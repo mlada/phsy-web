@@ -1,0 +1,18 @@
+<ng-container *ngFor="let form of formGroup.tests.controls">
+  <div
+    class="grid-container"
+    *ngIf="!form.value.isFinished && form.value.isStarted"
+  >
+    <ng-container *ngFor="let item of table.elements">
+      <a
+        class="col-bordered"
+        [class.disabled]="table.isChoosen(item)"
+        [class.success]="table.isSuccessed(item)"
+        [class.error]="table.isErrored(item)"
+        (click)="choose(item)"
+      >
+        {{ item }}
+      </a>
+    </ng-container>
+  </div>
+</ng-container>

@@ -22,27 +22,15 @@
     background: rgb(61, 124, 240);
   }
 }
-.timer {
-  display: block;
-  position: fixed;
-  top: 50px;
-  right: 30px;
-  width: 200px;
-  padding: 20px;
-  background-color: #673ab7;
-  color: white;
-  border-radius: 5px;
-  span {
-    font-size: 150%;
-  }
-}
-.result {
-  padding: 20px;
-  background-color: #673ab7;
-  color: white;
-  border-radius: 5px;
-  display: block;
-  span {
-    font-size: 150%;
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . ."
+    ". . . . .";
 }

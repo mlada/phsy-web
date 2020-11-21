@@ -1,0 +1,29 @@
+.timer {
+  display: block;
+  width: 200px;
+  padding: 20px;
+  background-color: #fafafa;
+  color: #333;
+  border-radius: 5px;
+  span {
+    font-size: 150%;
+  }
+}
+.result {
+  padding: 20px;
+  background-color: #fafafa;
+  color: white;
+  border-radius: 5px;
+  display: block;
+  span {
+    font-size: 150%;
+  }
+}
+.link {
+  cursor: pointer;
+  &.material-icons {
+    &:hover {
+      fill: #333;
+    }
+  }
+}
