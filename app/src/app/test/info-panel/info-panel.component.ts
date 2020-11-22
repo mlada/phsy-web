@@ -14,6 +14,7 @@ export class InfoPanelComponent implements OnInit {
   @Input() public results: TestResultModel[] = [];
   @Output() public startTesting: EventEmitter<void> = new EventEmitter(true);
   @Output() public stopTesting: EventEmitter<void> = new EventEmitter(true);
+  @Output() public saveTesting: EventEmitter<void> = new EventEmitter(true);
   constructor(public dialog: MatDialog, public timer: TimerService) {}
 
   public openDialog(): void {

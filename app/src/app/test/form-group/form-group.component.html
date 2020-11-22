@@ -1,7 +1,7 @@
-<ng-container *ngFor="let form of formGroup.tests.controls">
+<ng-container *ngFor="let form of formGroup.tests.controls; let index = index">
   <div
     class="grid-container"
-    *ngIf="!form.value.isFinished && form.value.isStarted"
+    *ngIf="!form.value.isFinished && form.value.isStarted && index < 5"
   >
     <ng-container *ngFor="let item of table.elements">
       <a

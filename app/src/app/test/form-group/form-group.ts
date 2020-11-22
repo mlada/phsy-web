@@ -1,10 +1,4 @@
-import { OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export interface TestResultModel {
   time: number;
@@ -33,10 +27,17 @@ export class TestsFormGroup extends FormGroup {
   public get tests(): FormArray {
     return this.controls.tests as FormArray;
   }
+  public get testsValue(): TestResultModel[] {
+    return this.tests.value;
+  }
   appendControl(): void {
     this.tests.push(new TestFormGroup());
+    console.log(this.tests);
   }
   setValueForTest(i: number, value: TestResultModel): void {
     this.tests.at(i).patchValue(value, { emitEvent: false });
+  }
+  getValueForTest(i: number): TestResultModel {
+    return this.tests.at(i).value;
   }
 }

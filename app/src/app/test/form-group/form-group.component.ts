@@ -14,15 +14,10 @@ export class FormGroupComponent implements OnInit {
 
   constructor(public table: TableService, public timer: TimerService) {}
 
-  ngOnInit(): void {
-    this.init();
-  }
-  init(): void {
-    for (let i = 1; i <= 25; i++) {
-      this.table.appendNumberToArray();
-    }
-  }
+  ngOnInit(): void {}
   start(): void {
+    console.log(this.currentTestNumber);
+    this.table.randomizeArray();
     this.formGroup.appendControl();
     this.formGroup.setValueForTest(this.currentTestNumber, {
       isFinished: false,
@@ -31,7 +26,6 @@ export class FormGroupComponent implements OnInit {
       successResult: this.table.successElements.length,
       failResult: this.table.errorElements.length,
     });
-    this.init();
     this.timer.start();
   }
   choose(elem: number): void {

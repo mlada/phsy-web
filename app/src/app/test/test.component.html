@@ -1,13 +1,21 @@
 <div class="row">
   <div class="col-8">
     <app-form-group #form></app-form-group>
+    <app-test-result
+      [results]="form.formGroup.testsValue"
+      *ngIf="
+        form.formGroup.testsValue.length === 5 &&
+        form.formGroup.testsValue[4].isFinished
+      "
+    ></app-test-result>
   </div>
   <div class="col-4">
     <app-info-panel
       [currentTime]="form.timer.time"
-      [results]="form.formGroup.tests.value"
+      [results]="form.formGroup.testsValue"
       (startTesting)="start()"
       (stopTesting)="stop()"
+      (saveTesting)="save()"
     ></app-info-panel>
   </div>
 </div>

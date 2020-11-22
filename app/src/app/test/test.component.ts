@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroupComponent } from '../form-group/form-group.component';
+import { FormGroupComponent } from './form-group/form-group.component';
 
 @Component({
   selector: 'app-test',
@@ -18,5 +18,8 @@ export class TestComponent implements OnInit {
   }
   stop(): void {
     this.form.stop();
+  }
+  save(): void {
+    console.log(this.form.formGroup.testsValue);
   }
 }

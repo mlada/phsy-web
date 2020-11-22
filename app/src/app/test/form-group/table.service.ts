@@ -1,7 +1,33 @@
 import { Injectable } from '@angular/core';
 import { TestResultModel } from './form-group';
 import { getMinOfArray, getRandomInt } from './helper';
-
+export const elements = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+];
 @Injectable({
   providedIn: 'root',
 })
@@ -9,7 +35,7 @@ export class TableService {
   choosedElements: number[] = [];
   successElements: number[] = [];
   errorElements: number[] = [];
-  elements: number[] = [];
+  elements: number[] = elements;
   copyElements: number[] = [];
   isChoosen(elem: number): boolean {
     return this.choosedElements.some((v) => v === elem);
@@ -20,14 +46,20 @@ export class TableService {
   isErrored(elem: number): boolean {
     return this.errorElements.some((v) => v === elem);
   }
-  appendNumberToArray(): void {
-    const num = getRandomInt(100);
-    if (num === 0 || num > 25 || this.elements.some((v) => v === num)) {
-      this.appendNumberToArray();
-    } else {
-      this.elements.push(num);
+  randomizeArray(): void {
+    while (this.elements.length !== 0) {
+      const ind = getRandomInt(this.elements.length);
+      const elem = this.getRandomElement(ind);
+      this.copyElements.push(elem);
     }
-    this.copyElements = this.elements;
+    this.elements = this.copyElements;
+  }
+
+  getRandomElement(i: number): number {
+    const elem = this.elements[i];
+    console.log(elem);
+    this.elements = this.elements.filter((e) => e !== elem);
+    return elem;
   }
   choose(elem: number): void {
     this.choosedElements.push(elem);
@@ -49,7 +81,7 @@ export class TableService {
     this.choosedElements = [];
     this.successElements = [];
     this.errorElements = [];
-    this.elements = [];
+    this.elements = elements;
     this.copyElements = [];
     return results;
   }
