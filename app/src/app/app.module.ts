@@ -17,6 +17,7 @@ import { TestInfoComponent } from './test/test-info/test-info.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InfoPanelComponent } from './test/info-panel/info-panel.component';
 import { FormGroupComponent } from './test/form-group/form-group.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormGroupComponent } from './test/form-group/form-group.component';
     TestInfoComponent,
     InfoPanelComponent,
     FormGroupComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,

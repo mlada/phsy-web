@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TestsFormGroup } from './form-group';
 import { TableService } from './table.service';
 import { TimerService } from './timer.service';
@@ -14,7 +14,13 @@ export class FormGroupComponent implements OnInit {
 
   constructor(public table: TableService, public timer: TimerService) {}
 
+  @HostListener('window:beforeunload', ['$event'])
+  public unloadHandler(event: Event): void {
+    event.returnValue = false;
+  }
+
   ngOnInit(): void {}
+
   start(): void {
     console.log(this.currentTestNumber);
     this.table.randomizeArray();

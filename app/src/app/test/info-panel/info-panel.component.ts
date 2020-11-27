@@ -19,10 +19,14 @@ export class InfoPanelComponent implements OnInit {
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(TestInfoComponent);
-    this.timer.pause();
+    if (this.timer.isStarted) {
+      this.timer.pause();
+    }
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      this.timer.start();
+      if (this.timer.isStarted) {
+        this.timer.start();
+      }
     });
   }
 
