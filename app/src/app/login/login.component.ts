@@ -24,10 +24,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   submit(): void {
-    this.subscription.add(
-      this.http.checkPassword(this.formGroup.value).subscribe(() => {
-        this.router.navigate(['test']);
-      })
-    );
+    if (
+      this.formGroup.value.login === 'user' &&
+      this.formGroup.value.password === 'user'
+    ) {
+      this.subscription.add(
+        this.http.checkPassword(this.formGroup.value).subscribe(() => {
+          this.router.navigate(['test']);
+        })
+      );
+    } else {
+      this.formGroup.setErrors({loginOrPasswordNotCorrect: true});
+    }
   }
 }

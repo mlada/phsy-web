@@ -1,20 +1,23 @@
 <div class="row align-items-center">
   <div class="col-6 offset-3">
-    <form [formGroup]="formGroup" (submit)="submit()">
-      <mat-form-field class="example-full-width">
+    <form class="row" [formGroup]="formGroup" (submit)="submit()">
+      <mat-form-field class="example-full-width col-12">
         <mat-label>Логин</mat-label>
         <input matInput placeholder="Введите логин" formControlName="login" />
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width col-12">
         <mat-label>Пароль</mat-label>
         <input
           matInput
           placeholder="Введите пароль"
           formControlName="password"
+          type="password"
         />
       </mat-form-field>
     </form>
-
+    <div class="error mb-2" *ngIf="formGroup.errors?.loginOrPasswordNotCorrect">
+      Некорректный логин или пароль
+    </div>
     <button mat-raised-button (click)="submit()">Отправить</button>
   </div>
 </div>
