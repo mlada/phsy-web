@@ -36,9 +36,6 @@ export const testResult: TestResultResponse = {
     { time: 20, successResult: 20, failResult: 5 },
     { time: 20, successResult: 20, failResult: 5 },
   ],
-  workEfficiency: 1,
-  degreeOfWorkability: 0.5,
-  mentalStability: 0.6,
 };
 export const testResult2: TestResultResponse = {
   id: 2,
@@ -51,9 +48,6 @@ export const testResult2: TestResultResponse = {
     { time: 30, successResult: 24, failResult: 1 },
     { time: 30, successResult: 24, failResult: 1 },
   ],
-  workEfficiency: 1,
-  degreeOfWorkability: 0.5,
-  mentalStability: 0.6,
 };
 
 @Injectable({
@@ -62,36 +56,45 @@ export const testResult2: TestResultResponse = {
 export class RequestsService {
   currentId = 0;
 
-  api = 'localhost:5100';
+  api = '/api';
   constructor(private http: HttpClient) {}
 
   register(data: UserDataCreateRequest): Observable<UserDataResponse> {
-    return of(testUser);
+    return this.http.post(
+      `${this.api}/user/create`,
+      data
+    ) as Observable<UserDataResponse>;
   }
 
   checkPassword(data: UserDataLoginRequest): Observable<UserDataResponse> {
-    return of(testUser).pipe(
-      tap((user) => {
-        this.currentId = user.id;
-      })
-    );
+    return this.http.post(
+      `${this.api}/user/checkPassword`,
+      data
+    ) as Observable<UserDataResponse>;
   }
 
   saveTestResult(
     data: TestResultCreateRequest
   ): Observable<TestResultResponse> {
-    return of(testResult);
+    return this.http.post(
+      `${this.api}/test/create`,
+      data
+    ) as Observable<TestResultResponse>;
   }
 
   getTestResultsByUser(id: number): Observable<TestResultResponse[]> {
-    return of([testResult, testResult2]);
+    return this.http.get(`${this.api}/test/user/${id}`) as Observable<
+      TestResultResponse[]
+    >;
   }
 
   getAllTestResults(): Observable<TestResultResponse[]> {
-    return of([testResult, testResult2]);
+    return this.http.get(`${this.api}/test`) as Observable<
+      TestResultResponse[]
+    >;
   }
 
   getUserLists(): Observable<UserDataResponse[]> {
-    return of([testUser]);
+    return this.http.get(`${this.api}/user`) as Observable<UserDataResponse[]>;
   }
 }

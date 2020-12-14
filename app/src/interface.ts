@@ -34,7 +34,4 @@ export interface TestResultResponse {
   userId: number;
   results: TestResultData[];
   date: string;
-  workEfficiency: number;
-  degreeOfWorkability: number;
-  mentalStability: number;
 }
