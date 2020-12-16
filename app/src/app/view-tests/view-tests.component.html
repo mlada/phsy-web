@@ -1,0 +1,4 @@
+<div class="view-block" *ngFor="let item of tests | async">
+  <h2>Тест пройден {{ item.date | date }}</h2>
+  <app-test-result [results]="item.results"></app-test-result>
+</div>

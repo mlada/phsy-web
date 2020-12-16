@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { RequestsService } from '../shared/requests.service';
 import { FormGroupComponent } from './form-group/form-group.component';
 
 @Component({
@@ -10,7 +12,7 @@ export class TestComponent implements OnInit {
   @ViewChild('form')
   form!: FormGroupComponent;
 
-  constructor() {}
+  constructor(private http: RequestsService, private router: Router) {}
 
   ngOnInit(): void {}
   start(): void {
@@ -20,6 +22,8 @@ export class TestComponent implements OnInit {
     this.form.stop();
   }
   save(): void {
-    console.log(this.form.formGroup.testsValue);
+    this.http.saveTestResult(this.form.formGroup.testsValue).subscribe(() => {
+      this.router.navigate(['view-tests']);
+    });
   }
 }

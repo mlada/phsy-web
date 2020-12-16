@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { RequestsService } from '../shared/requests.service';
 
 @Component({
@@ -27,9 +28,17 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
   submit(): void {
     this.subscription.add(
-      this.http.register(this.formGroup.value).subscribe(() => {
-        this.router.navigate(['login']);
-      })
+      this.http
+        .register(this.formGroup.value)
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            return throwError(err);
+          })
+        )
+        .subscribe(() => {
+          this.router.navigate(['login']);
+        })
     );
   }
 }

@@ -20,14 +20,14 @@ export enum RoleEnum {
   User = 1,
 }
 export interface TestResultCreateRequest {
-  userId: string;
-  results: TestResultData[];
+  userId: number;
+  results: string;
   date: string;
 }
 export interface TestResultData {
   time: number;
-  successResult: number;
-  failResult: number;
+  success: number;
+  fail: number;
 }
 export interface TestResultResponse {
   id: number;

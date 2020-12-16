@@ -18,6 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { InfoPanelComponent } from './test/info-panel/info-panel.component';
 import { FormGroupComponent } from './test/form-group/form-group.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { MainComponent } from './main/main.component';
+import { ViewTestsComponent } from './view-tests/view-tests.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { RegistrationComponent } from './registration/registration.component';
     InfoPanelComponent,
     FormGroupComponent,
     RegistrationComponent,
+    MainComponent,
+    ViewTestsComponent,
   ],
   imports: [
     BrowserModule,

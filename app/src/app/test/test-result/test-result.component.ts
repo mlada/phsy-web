@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { TestResultData } from 'src/interface';
 import { TestResultModel } from '../form-group/form-group';
 
 export enum EffectiveWorkEnum {
@@ -15,7 +16,7 @@ export enum EffectiveWorkEnum {
   styleUrls: ['./test-result.component.scss'],
 })
 export class TestResultComponent implements OnInit {
-  @Input() results: TestResultModel[] = [];
+  @Input() results: TestResultData[] = [];
   effectiveWork = 0;
   degreeOfWorkability = 0;
   mentalStability = 0;

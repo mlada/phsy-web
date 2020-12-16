@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { RequestsService } from '../shared/requests.service';
 
 @Component({
@@ -24,17 +25,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   submit(): void {
-    if (
-      this.formGroup.value.login === 'user' &&
-      this.formGroup.value.password === 'user'
-    ) {
-      this.subscription.add(
-        this.http.checkPassword(this.formGroup.value).subscribe(() => {
+    this.subscription.add(
+      this.http
+        .checkPassword(this.formGroup.value)
+        .pipe(
+          catchError((err) => {
+            console.log(err);
+            this.formGroup.setErrors({ loginOrPasswordNotCorrect: true });
+            return throwError(err);
+          })
+        )
+        .subscribe(() => {
           this.router.navigate(['test']);
         })
-      );
-    } else {
-      this.formGroup.setErrors({loginOrPasswordNotCorrect: true});
-    }
+    );
   }
 }
