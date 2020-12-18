@@ -10,6 +10,7 @@ import { TestResultComponent } from './test/test-result/test-result.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
@@ -45,6 +46,7 @@ import { ViewTestsComponent } from './view-tests/view-tests.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

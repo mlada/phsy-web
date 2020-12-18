@@ -8,10 +8,6 @@ import { ViewTestsComponent } from './view-tests/view-tests.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
     path: 'registration',
     component: RegistrationComponent,
   },
@@ -26,6 +22,10 @@ const routes: Routes = [
       {
         path: 'view-tests',
         component: ViewTestsComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
       {
         path: '**',

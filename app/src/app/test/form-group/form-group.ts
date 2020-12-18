@@ -1,4 +1,5 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { TestResultData } from 'src/interface';
 
 export interface TestResultModel {
   time: number;
@@ -27,8 +28,15 @@ export class TestsFormGroup extends FormGroup {
   public get tests(): FormArray {
     return this.controls.tests as FormArray;
   }
+  public get testsResults(): TestResultData[] {
+    return this.testsValue?.map((test) => ({
+      time: test.time,
+      fail: test.failResult,
+      success: test.successResult,
+    }));
+  }
   public get testsValue(): TestResultModel[] {
-    return this.tests.value;
+    return this.tests.value as TestResultModel[];
   }
   appendControl(): void {
     this.tests.push(new TestFormGroup());

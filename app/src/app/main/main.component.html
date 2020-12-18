@@ -1,5 +1,10 @@
 <ul>
   <li>
+    <a class="link" [routerLink]="['login']" routerLinkActive="active">{{
+      isCurrentUser ? "Выйти" : "Войти"
+    }}</a>
+  </li>
+  <li>
     <a class="link" [routerLink]="['test']" routerLinkActive="active"
       >Пройти тест</a
     >

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { CurrentStateService } from '../shared/current-state.service';
 import { RequestsService } from '../shared/requests.service';
 import { FormGroupComponent } from './form-group/form-group.component';
 
@@ -14,7 +15,12 @@ export class TestComponent implements OnInit {
 
   constructor(private http: RequestsService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!!CurrentStateService.currentUser.value) {
+      CurrentStateService.currentUser.next({ id: 1 } as any);
+    }
+    console.log(CurrentStateService.currentUser.value);
+  }
   start(): void {
     this.form.start();
   }

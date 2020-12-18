@@ -2,7 +2,7 @@
   <div class="col-8">
     <app-form-group #form></app-form-group>
     <app-test-result
-      [results]="form.formGroup.testsValue"
+      [results]="form.formGroup.testsResults"
       *ngIf="
         form.formGroup.testsValue.length === 5 &&
         form.formGroup.testsValue[4].isFinished
